@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Chá de Casa Nova Bia e Gu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root{
+  --primary:#6c5ce7;
+  --bg:#f7f8fc;
+  --card:#ffffff;
+  --text:#2d3436;
+  --muted:#636e72;
+  --success:#00b894;
+  --radius:14px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  font-family:'Segoe UI', Inter, Arial, sans-serif;
+  background:var(--bg);
+  margin:0;
+  color:var(--text);
+}
+
+header{
+  background:linear-gradient(135deg,#6c5ce7,#7b6cff);
+  color:white;
+  padding:40px 20px;
+  text-align:center;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+}
+
+.container{
+  padding:30px 20px;
+  max-width:850px;
+  margin:auto;
+}
+
+.item{
+  background:white;
+  padding:18px 20px;
+  border-radius:14px;
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  box-shadow:0 6px 25px rgba(0,0,0,.05);
+}
+
+.item span{
+  flex:1;
+  font-size:16px;
+}
+
+.item button{
+  background:#6c5ce7;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.item a{
+  text-decoration:none;
+  color:#6c5ce7;
+  border:1px solid #6c5ce7;
+  padding:9px 14px;
+  border-radius:10px;
+}
+
+.produto-img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.aviso{
+  background:#fff7e6;
+  border-left:6px solid #f1c40f;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:25px;
+}
+
+.pix-box{
+  margin-top:40px;
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+}
+
+.copy-btn{
+  margin-top:15px;
+  background:#6c5ce7;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+  .preco{
+  margin-top:6px;
+  font-size:20px;
+  font-weight:700;
+  color:#00b894;
+  letter-spacing:.3px;
+}
+
+
+  /* ===============================
+   AJUSTE MOBILE
+================================ */
+@media (max-width: 700px){
+
+  .item{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .produto-img{
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+  }
+
+  .item span{
+    width: 100%;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .item button,
+  .item a{
+    width: 100%;
+    max-width: 260px;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .item a{
+    display: block;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Chá de Casa Nova</h1>
+  <h1>Bianca & Gustavo</h1>
+  <p>Escolha um presente e nos ajude a montar nosso lar 💜</p>
+</header>
+
+<div class="container">
+
+<div class="aviso">
+⚠️ Antes de comprar, clique em <b>“Vou comprar”</b> para reservar o item.<br>
+Isso evita compras duplicadas.<br>
+<b>Marque apenas se tiver certeza 💜</b>
+</div>
+
+<div id="loading" style="text-align:center;font-weight:bold;color:#6c5ce7">
+🔄 Carregando lista de presentes...
+</div>
+
+<!-- ITEM 1 -->
+<div class="item">
+  <img class="produto-img"
+    src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mbpct1u2edspd4.webp">
+
+  <span>
+    Escova de Limpeza Vaso Sanitário<br>
+    <div class="preco">R$ 12,95</div>
+  </span>
+
+  <button>Vou comprar</button>
+
+  <a href="https://s.shopee.com.br/6VH2gkMlpf" target="_blank">
+    Comprar
+  </a>
+</div>
+
+<div class="item"><span>Conjunto de Copos</span><button>Vou comprar</button><a href="#">Comprar</a></div>
+<div class="item"><span>Jogo de Talheres</span><button>Vou comprar</button><a href="#">Comprar</a></div>
+<div class="item"><span>Jogo de Panelas</span><button>Vou comprar</button><a href="#">Comprar</a></div>
+<div class="item"><span>Liquidificador</span><button>Vou comprar</button><a href="#">Comprar</a></div>
+<div class="item"><span>Sanduicheira</span><button>Vou comprar</button><a href="#">Comprar</a></div>
+<div class="item"><span>Ferro de Passar</span><button>Vou comprar</button><a href="#">Comprar</a></div>
+
+<!-- PIX -->
+<div class="pix-box">
+  <h2>Está indeciso? 💜</h2>
+  <p>Deixe que a gente decida o presente ✨</p>
+
+  <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=e31894ec-22a2-4fab-bcfe-f1e5a514ad7c">
+
+  <div id="pixKey" style="margin-top:15px;font-weight:bold">
+    e31894ec-22a2-4fab-bcfe-f1e5a514ad7c
+  </div>
+
+  <button class="copy-btn" onclick="copiarPix()">📋 Copiar chave Pix</button>
+</div>
+
+</div>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbz_5lK57_Sg9m_4LJHr-BHoTOggAprk6Ai54xLugWzYe0vXFHy7R1kLEabRuIR85ErDhQ/exec';
+
+let primeiraCarga = true;
+
+async function carregar(){
+
+  if(primeiraCarga){
+    document.querySelectorAll('.item button').forEach(b=>{
+      b.disabled = true;
+      b.innerText = 'Carregando...';
+    });
+  }
+
+  try{
+    const r = await fetch(API_URL + '?t=' + Date.now());
+    const dados = await r.json();
+
+    document.querySelectorAll('.item').forEach((div,i)=>{
+      const status = dados[i+1][1];
+      const btn = div.querySelector('button');
+
+      if(status === 'Comprado'){
+        btn.innerText = 'COMPRADO';
+        btn.style.background = '#00b894';
+        btn.disabled = true;
+      }else{
+        btn.innerText = 'Vou comprar';
+        btn.style.background = '#6c5ce7';
+        btn.disabled = false;
+      }
+
+      btn.onclick = ()=>comprar(i+2, btn);
+    });
+
+  }catch(e){
+    console.error(e);
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  primeiraCarga = false;
+}
+
+async function comprar(linha, btn, item){
+
+  // ✅ CORREÇÃO DEFINITIVA DO UNDEFINED
+  if(!item){
+    const span = btn.closest('.item').querySelector('span');
+    item = span.childNodes[0].textContent.trim();
+  }
+
+  const nome = prompt(
+    `Dê uma dica de quem está comprando e confirme que irá comprar:\n\n"${item}"`
+  );
+
+  if(!nome) return;
+
+  btn.innerText = 'Salvando...';
+  btn.disabled = true;
+
+  await fetch(API_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:`linha=${linha}&nome=${encodeURIComponent(nome)}`
+  });
+
+  carregar();
+}
+
+function copiarPix(){
+  navigator.clipboard.writeText(
+    document.getElementById('pixKey').innerText
+  ).then(()=>{
+    alert('Chave Pix copiada!');
+  });
+}
+
+carregar();
+setInterval(carregar,2000);
+</script>
+
+</body>
+</html>
