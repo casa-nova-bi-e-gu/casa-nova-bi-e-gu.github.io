@@ -761,8 +761,13 @@ async function carregar(){
 
       btn.onclick = ()=>{
         const link = div.querySelector('a').href;
-        comprar(i+2, btn, link);
+
+        // abre IMEDIATAMENTE (não será bloqueado)
+        const novaAba = window.open(link, '_blank');
+
+        comprar(i+2, btn, novaAba);
       };
+
     });
 
   }catch(e){
@@ -773,7 +778,7 @@ async function carregar(){
   primeiraCarga = false;
 }
 
-async function comprar(linha, btn, linkProduto){
+async function comprar(linha, btn, aba){
 
   const span = btn.closest('.item').querySelector('span');
   const item = span.childNodes[0].textContent.trim();
@@ -782,7 +787,11 @@ async function comprar(linha, btn, linkProduto){
     `Dê uma dica de quem está comprando e confirme que irá comprar:\n\n"${item}"`
   );
 
-  if(!nome) return;
+  if(!nome){
+    // se cancelar, fecha a aba aberta
+    if(aba) aba.close();
+    return;
+  }
 
   btn.innerText = 'Salvando...';
   btn.disabled = true;
@@ -793,9 +802,9 @@ async function comprar(linha, btn, linkProduto){
     body:`linha=${linha}&nome=${encodeURIComponent(nome)}`
   });
 
-  // ✅ redireciona automaticamente
-  window.open(linkProduto, '_blank');
+  // mantém a aba aberta normalmente
 }
+
 
 
 function copiarPix(){
