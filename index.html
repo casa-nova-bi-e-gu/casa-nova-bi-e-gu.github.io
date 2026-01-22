@@ -731,6 +731,8 @@ Isso evita compras duplicadas.<br>
 const API_URL = 'https://script.google.com/macros/s/AKfycbz_5lK57_Sg9m_4LJHr-BHoTOggAprk6Ai54xLugWzYe0vXFHy7R1kLEabRuIR85ErDhQ/exec';
 
 let primeiraCarga = true;
+let bloqueado = false;
+
 
 async function carregar(){
 
@@ -780,6 +782,8 @@ async function carregar(){
 
 async function comprar(linha, btn, aba){
 
+  bloqueado = true; // 🔒 trava atualização
+
   const span = btn.closest('.item').querySelector('span');
   const item = span.childNodes[0].textContent.trim();
 
@@ -788,8 +792,8 @@ async function comprar(linha, btn, aba){
   );
 
   if(!nome){
-    // se cancelar, fecha a aba aberta
     if(aba) aba.close();
+    bloqueado = false;
     return;
   }
 
@@ -802,8 +806,10 @@ async function comprar(linha, btn, aba){
     body:`linha=${linha}&nome=${encodeURIComponent(nome)}`
   });
 
-  // mantém a aba aberta normalmente
+  bloqueado = false;
+  carregar();
 }
+
 
 
 
@@ -816,7 +822,12 @@ function copiarPix(){
 }
 
 carregar();
-setInterval(carregar,2000);
+setInterval(()=>{
+  if(!bloqueado){
+    carregar();
+  }
+}, 2000);
+
 </script>
 
 </body>
