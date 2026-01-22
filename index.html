@@ -759,7 +759,10 @@ async function carregar(){
         btn.disabled = false;
       }
 
-      btn.onclick = ()=>comprar(i+2, btn);
+      btn.onclick = ()=>{
+        const link = div.querySelector('a').href;
+        comprar(i+2, btn, link);
+      };
     });
 
   }catch(e){
@@ -770,13 +773,10 @@ async function carregar(){
   primeiraCarga = false;
 }
 
-async function comprar(linha, btn, item){
+async function comprar(linha, btn, linkProduto){
 
-  // ✅ CORREÇÃO DEFINITIVA DO UNDEFINED
-  if(!item){
-    const span = btn.closest('.item').querySelector('span');
-    item = span.childNodes[0].textContent.trim();
-  }
+  const span = btn.closest('.item').querySelector('span');
+  const item = span.childNodes[0].textContent.trim();
 
   const nome = prompt(
     `Dê uma dica de quem está comprando e confirme que irá comprar:\n\n"${item}"`
@@ -793,8 +793,10 @@ async function comprar(linha, btn, item){
     body:`linha=${linha}&nome=${encodeURIComponent(nome)}`
   });
 
-  carregar();
+  // ✅ redireciona automaticamente
+  window.open(linkProduto, '_blank');
 }
+
 
 function copiarPix(){
   navigator.clipboard.writeText(
