@@ -731,8 +731,6 @@ Isso evita compras duplicadas.<br>
 const API_URL = 'https://script.google.com/macros/s/AKfycbz_5lK57_Sg9m_4LJHr-BHoTOggAprk6Ai54xLugWzYe0vXFHy7R1kLEabRuIR85ErDhQ/exec';
 
 let primeiraCarga = true;
-let bloqueado = false;
-
 
 async function carregar(){
 
@@ -761,15 +759,7 @@ async function carregar(){
         btn.disabled = false;
       }
 
-      btn.onclick = ()=>{
-        const link = div.querySelector('a').href;
-
-        // abre IMEDIATAMENTE (não será bloqueado)
-        const novaAba = window.open(link, '_blank');
-
-        comprar(i+2, btn, novaAba);
-      };
-
+      btn.onclick = ()=>comprar(i+2, btn);
     });
 
   }catch(e){
@@ -780,22 +770,19 @@ async function carregar(){
   primeiraCarga = false;
 }
 
-async function comprar(linha, btn, aba){
+async function comprar(linha, btn, item){
 
-  bloqueado = true; // 🔒 trava atualização
-
-  const span = btn.closest('.item').querySelector('span');
-  const item = span.childNodes[0].textContent.trim();
+  // ✅ CORREÇÃO DEFINITIVA DO UNDEFINED
+  if(!item){
+    const span = btn.closest('.item').querySelector('span');
+    item = span.childNodes[0].textContent.trim();
+  }
 
   const nome = prompt(
     `Dê uma dica de quem está comprando e confirme que irá comprar:\n\n"${item}"`
   );
 
-  if(!nome){
-    if(aba) aba.close();
-    bloqueado = false;
-    return;
-  }
+  if(!nome) return;
 
   btn.innerText = 'Salvando...';
   btn.disabled = true;
@@ -806,12 +793,8 @@ async function comprar(linha, btn, aba){
     body:`linha=${linha}&nome=${encodeURIComponent(nome)}`
   });
 
-  bloqueado = false;
   carregar();
 }
-
-
-
 
 function copiarPix(){
   navigator.clipboard.writeText(
@@ -822,12 +805,7 @@ function copiarPix(){
 }
 
 carregar();
-setInterval(()=>{
-  if(!bloqueado){
-    carregar();
-  }
-}, 2000);
-
+setInterval(carregar,2000);
 </script>
 
 </body>
